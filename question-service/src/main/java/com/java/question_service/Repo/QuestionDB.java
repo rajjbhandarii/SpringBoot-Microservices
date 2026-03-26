@@ -18,4 +18,7 @@ public interface QuestionDB extends JpaRepository<Question, Integer> {
     @Query(value = "SELECT q.id FROM question q WHERE q.category = :category ORDER BY RANDOM() LIMIT :numQ", nativeQuery = true)
     List<Integer> findrandomQuestionsByCategory(String category, Integer numQ);
 
+    @Query(value = "SELECT q.id FROM question q WHERE q.difficultylevel = :difficulty", nativeQuery = true)
+    public List<Integer> findAllByDifficultylevel(String difficulty);
+
 }

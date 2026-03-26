@@ -40,4 +40,9 @@ public class QuizController {
         return quizService.calculateScore(quizNumber, answers);
     }
 
+    @GetMapping("difficulty/{difficulty}")
+    public ResponseEntity<List<QuestionWrapper>> getQuizByDifficulty(@PathVariable String difficulty) {
+        return quizService.getQuestionByDifficulty(difficulty);
+    }
+
 }

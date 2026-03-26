@@ -105,4 +105,15 @@ public class QuestionService {
             return new ResponseEntity<>((Integer) null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public ResponseEntity<List<QuestionWrapper>> getQuestionByDifficulty(String difficulty) {
+        try {
+            List<Integer> questionIds = questionDb.findAllByDifficultylevel(difficulty);
+            getQuizQuestionFormId(questionIds);
+            return getQuizQuestionFormId(questionIds);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

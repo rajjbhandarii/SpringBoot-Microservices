@@ -60,4 +60,14 @@ public class QuizService {
             return new ResponseEntity<>((Integer) null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    public ResponseEntity<List<QuestionWrapper>> getQuestionByDifficulty(String difficulty) {
+        try {
+            List<QuestionWrapper> questionForUser = quizInterface.getQuestionByDifficulty(difficulty).getBody();
+            return ResponseEntity.ok(questionForUser);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(500).body(null);
+        }
+    }
 }

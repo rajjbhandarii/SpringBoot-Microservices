@@ -67,4 +67,8 @@ public class QuestionController {
         return questionService.getScore(submissions);
     }
 
+    @GetMapping("difficultyLevel/{difficulty}")
+    public ResponseEntity<List<QuestionWrapper>> getQuestionByDifficulty(@PathVariable String difficulty) {
+        return questionService.getQuestionByDifficulty(difficulty);
+    }
 }
