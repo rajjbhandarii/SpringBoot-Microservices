@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.king.SpringSecurity.Feign.SecurityInterface;
+import com.king.SpringSecurity.Feign.QuizServiceInterface;
 import com.king.SpringSecurity.Model.QuestionWrapper;
 import com.king.SpringSecurity.Model.QuizDto;
 import com.king.SpringSecurity.Model.Submission;
 
 @Service
 public class RequestQuizService {
-    private final SecurityInterface securityInterface;
+    private final QuizServiceInterface securityInterface;
 
-    public RequestQuizService(SecurityInterface securityInterface) {
+    public RequestQuizService(QuizServiceInterface securityInterface) {
         this.securityInterface = securityInterface;
     }
 

@@ -14,7 +14,7 @@ import com.king.SpringSecurity.Model.QuizDto;
 import com.king.SpringSecurity.Model.Submission;
 
 @FeignClient("QUIZ-SERVICE")
-public interface SecurityInterface {
+public interface QuizServiceInterface {
     @PostMapping("quiz/create")
     public ResponseEntity<String> createQuiz(@RequestBody QuizDto quizDto);
 
