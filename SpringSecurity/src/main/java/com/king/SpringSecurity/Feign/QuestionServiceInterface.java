@@ -10,23 +10,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.king.SpringSecurity.Model.Question;
 import com.king.SpringSecurity.Model.QuestionWrapper;
-import com.king.SpringSecurity.Model.Submission;
 
 @FeignClient("QUESTION-SERVICE")
 public interface QuestionServiceInterface {
 
-    @GetMapping("generate")
+    @GetMapping("question/questions")
+    public ResponseEntity<List<Question>> getAllQuestions();
+
+    @GetMapping("question/category/{category}")
+    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category);
+
+    @GetMapping("question/rightAnswer/{answer}")
+    public ResponseEntity<List<Question>> getQuestionsByRightAnswer(@PathVariable String answer);
+
+    @PostMapping("question/add")
+    public ResponseEntity<String> addQuestion(@RequestBody Question question);
+
+    @GetMapping("question/generate")
     public ResponseEntity<List<Integer>> generateQuestionsForQuiz(
             @RequestParam String categoryName,
             @RequestParam Integer numQuestions);
 
-    @PostMapping("getQuestion")
+    @PostMapping("question/getQuestion")
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestionFormId(@RequestBody List<Integer> questionIds);
 
-    @PostMapping("getScore")
-    public ResponseEntity<Integer> getScore(@RequestBody List<Submission> submissions);
-
-    @GetMapping("difficultyLevel/{difficulty}")
+    @GetMapping("question/difficultyLevel/{difficulty}")
     public ResponseEntity<List<QuestionWrapper>> getQuestionByDifficulty(@PathVariable String difficulty);
 }
