@@ -2,6 +2,7 @@ package com.king.SpringSecurity.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -11,21 +12,20 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.king.SpringSecurity.Service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final UserDetailsServiceImpl userDetailsService;
-    private final JwtFilter JwtFilter;
+    private final UserDetailsService userDetailsService;
+    private final JwtFilter jwtFilter;
 
-    public SecurityConfig(UserDetailsServiceImpl userDetailsService, JwtFilter JwtFilter) {
+    public SecurityConfig(UserDetailsService userDetailsService, @Lazy JwtFilter jwtFilter) {
         this.userDetailsService = userDetailsService;
-        this.JwtFilter = JwtFilter;
+        this.jwtFilter = jwtFilter;
     }
 
     // this method so Spring Security knows exactly how to secure your app.
@@ -39,7 +39,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(JwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
