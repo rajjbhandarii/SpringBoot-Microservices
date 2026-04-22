@@ -10,23 +10,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.king.SpringSecurity.Model.Question;
+import com.king.SpringSecurity.Model.QuestionDto;
 import com.king.SpringSecurity.Model.QuestionWrapper;
 
 @FeignClient("QUESTION-SERVICE")
 public interface QuestionServiceInterface {
 
     @GetMapping("question/questions")
-    public ResponseEntity<List<Question>> getAllQuestions();
+    public ResponseEntity<List<QuestionDto>> getAllQuestions();
 
     @GetMapping("question/category/{category}")
-    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category);
+    public ResponseEntity<List<QuestionDto>> getQuestionsByCategory(@PathVariable String category);
 
     @GetMapping("question/rightAnswer/{answer}")
-    public ResponseEntity<List<Question>> getQuestionsByRightAnswer(@PathVariable String answer);
+    public ResponseEntity<List<QuestionDto>> getQuestionsByRightAnswer(@PathVariable String answer);
 
     @PostMapping("question/add")
-    public ResponseEntity<String> addQuestion(@RequestBody Question question);
+    public ResponseEntity<String> addQuestion(@RequestBody QuestionDto question);
 
     @GetMapping("question/generate")
     public ResponseEntity<List<Integer>> generateQuestionsForQuiz(

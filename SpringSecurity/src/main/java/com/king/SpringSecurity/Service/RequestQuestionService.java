@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.king.SpringSecurity.Model.Question;
 
 import com.king.SpringSecurity.Feign.QuestionServiceInterface;
+import com.king.SpringSecurity.Model.QuestionDto;
 import com.king.SpringSecurity.Model.QuestionWrapper;
 
 @Service
 public class RequestQuestionService {
+
     private final QuestionServiceInterface requQuestionServiceInterface;
 
     public RequestQuestionService(QuestionServiceInterface questionService) {
@@ -31,19 +32,19 @@ public class RequestQuestionService {
         return requQuestionServiceInterface.getQuestionByDifficulty(difficulty);
     }
 
-    public ResponseEntity<List<Question>> getAllQuestions() {
+    public ResponseEntity<List<QuestionDto>> getAllQuestions() {
         return requQuestionServiceInterface.getAllQuestions();
     }
 
-    public ResponseEntity<List<Question>> getQuestionsByCategory(String category) {
+    public ResponseEntity<List<QuestionDto>> getQuestionsByCategory(String category) {
         return requQuestionServiceInterface.getQuestionsByCategory(category);
     }
 
-    public ResponseEntity<List<Question>> getQuestionsByRightAnswer(String answer) {
+    public ResponseEntity<List<QuestionDto>> getQuestionsByRightAnswer(String answer) {
         return requQuestionServiceInterface.getQuestionsByRightAnswer(answer);
     }
 
-    public ResponseEntity<String> addQuestion(Question question) {
+    public ResponseEntity<String> addQuestion(QuestionDto question) {
         return requQuestionServiceInterface.addQuestion(question);
     }
 }
