@@ -12,6 +12,7 @@ import com.king.SpringSecurity.Model.Submission;
 
 @Service
 public class RequestQuizService {
+
     private final QuizServiceInterface securityInterface;
 
     public RequestQuizService(QuizServiceInterface securityInterface) {

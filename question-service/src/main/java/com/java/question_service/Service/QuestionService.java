@@ -23,7 +23,8 @@ public class QuestionService {
 
     public ResponseEntity<List<Question>> getAllQuestions() {
         try {
-            return ResponseEntity.ok(questionDb.findAll());
+            List<Question> questions = questionDb.findAll();
+            return ResponseEntity.ok(questions);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ArrayList<>());
         }
@@ -31,7 +32,8 @@ public class QuestionService {
 
     public ResponseEntity<List<Question>> getQuestionsByCategory(String category) {
         try {
-            return ResponseEntity.ok(questionDb.findByCategory(category));
+            List<Question> questions = questionDb.findByCategory(category);
+            return ResponseEntity.ok(questions);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ArrayList<>());
         }
@@ -39,7 +41,8 @@ public class QuestionService {
 
     public ResponseEntity<List<Question>> getQuestionsByRightAnswer(String rightAnswer) {
         try {
-            return ResponseEntity.ok(questionDb.findAllByRightAnswer(rightAnswer));
+            List<Question> questions = questionDb.findAllByRightAnswer(rightAnswer);
+            return ResponseEntity.ok(questions);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ArrayList<>());
         }

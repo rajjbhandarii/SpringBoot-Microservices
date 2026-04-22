@@ -14,7 +14,7 @@ import com.king.quiz_service.Model.QuestionWrapper;
 import com.king.quiz_service.Model.Submission;
 
 @FeignClient("QUESTION-SERVICE") // this also handle the load balancing for us, we can have multiple instances of
-                                 // question service and it will distribute the load among them
+// question service and it will distribute the load among them
 public interface QuizInterface {
 
     @GetMapping("question/generate")

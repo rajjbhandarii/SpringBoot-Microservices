@@ -14,6 +14,7 @@ import com.king.quiz_service.Repo.QuizDao;
 
 @Service
 public class QuizService {
+
     private final QuizDao quizDao;
     private final QuizInterface quizInterface;
 
