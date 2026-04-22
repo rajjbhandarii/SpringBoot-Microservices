@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.king.SpringSecurity.Model.QuestionDto;
 import com.king.SpringSecurity.Model.QuestionWrapper;
 import com.king.SpringSecurity.Service.RequestQuestionService;
-import com.king.SpringSecurity.Model.Question;
 
 @RestController
 @RequestMapping("admin")
@@ -26,22 +26,22 @@ public class QuestionRequestController {
     }
 
     @GetMapping("question/getAllQuestions")
-    public ResponseEntity<List<Question>> getAllQuestions() {
+    public ResponseEntity<List<QuestionDto>> getAllQuestions() {
         return questionService.getAllQuestions();
     }
 
     @GetMapping("question/byCategory/{category}")
-    public ResponseEntity<List<Question>> getQuestionsByCategory(@PathVariable String category) {
+    public ResponseEntity<List<QuestionDto>> getQuestionsByCategory(@PathVariable String category) {
         return questionService.getQuestionsByCategory(category);
     }
 
     @GetMapping("question/byRightAnswer/{answer}")
-    public ResponseEntity<List<Question>> getQuestionsByRightAnswer(@PathVariable String answer) {
+    public ResponseEntity<List<QuestionDto>> getQuestionsByRightAnswer(@PathVariable String answer) {
         return questionService.getQuestionsByRightAnswer(answer);
     }
 
     @PostMapping("question/addQuestions")
-    public ResponseEntity<String> addQuestion(@RequestBody Question question) {
+    public ResponseEntity<String> addQuestion(@RequestBody QuestionDto question) {
         return questionService.addQuestion(question);
     }
 
