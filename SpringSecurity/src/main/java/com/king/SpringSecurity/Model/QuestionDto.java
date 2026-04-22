@@ -3,7 +3,7 @@ package com.king.SpringSecurity.Model;
 import lombok.Data;
 
 @Data
-public class Question {
+public class QuestionDto {
 
     private Integer id;
     private String questionTitle;
